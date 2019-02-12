@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fr.toulouse.dao.RestoDao">
+    <select id="queryResto" resultType="fr.toulouse.entity.Restaurant">
+        SELECT restaurant_id FROM tb_restaurant
+        WHERE id = #{id}
+        ORDER BY aimer
+        DESC
+    </select>
+</mapper>
