@@ -14,7 +14,7 @@ import java.io.IOException;
 
 
 @Configuration
-public class SessionFactoryConfiguration {
+public class MySessionFactoryConfiguration {
 
     @Value("${mybatis_config_file}")
     private String mybatisConfigFilePath;

@@ -2,40 +2,57 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="fr.toulouse.dao.ObjectDao">
-    <select id="queryObjects" resultType="fr.toulouse.entity.Object">
-        SELECT id,owner,name,image,discription,price,contactName,contactNum,contactWechat,tag ,aimer
-        FROM tb_object
+<mapper namespace="fr.toulouse.dao.SHobjectDao">
+
+    <select id="queryObjects" resultType="fr.toulouse.entity.SHobject">
+        /*SELECT id,owner,name,image,discription,price,contactName,contactNum,contactWechat,tag
+        FROM tb_object*/
+        SELECT tb_object.id as id,tb_object.owner,tb_object.name,tb_object.image,tb_object.discription,tb_object.price,
+  tb_object.contactName,tb_object.contactNum,tb_object.contactWechat,tb_object.tag,count(tb_object.id) as aimer FROM tb_object
+        LEFT JOIN aime_object on tb_object.id = aime_object.object
+        GROUP BY tb_object.id
         ORDER BY aimer
         DESC
     </select>
 
-    <select id="queryObjectsById" resultType="fr.toulouse.entity.Object">
-        SELECT id,owner,name,image,discription,price,contactName,contactNum,contactWechat,tag ,aimer
-        FROM tb_object
-        WHERE id = #{id}
+    <select id="queryObjectById" resultType="fr.toulouse.entity.SHobject">
+        SELECT tb_object.id as id,tb_object.owner,tb_object.name,tb_object.image,tb_object.discription,tb_object.price,
+  tb_object.contactName,tb_object.contactNum,tb_object.contactWechat,tb_object.tag,count(tb_object.id) as aimer FROM tb_object
+        LEFT JOIN aime_object on tb_object.id = aime_object.object
+        WHERE tb_object.id = #{id}
     </select>
 
-    <select id="queryObjectsByOwner" resultType="fr.toulouse.entity.Object">
-        SELECT id,owner,name,image,discription,price,contactName,contactNum,contactWechat,tag ,aimer
-        FROM tb_object
-        WHERE owner = #{owner}
+    <select id="queryObjectsByOwner" resultType="fr.toulouse.entity.SHobject">
+        SELECT tb_object.id as id,tb_object.owner,tb_object.name,tb_object.image,tb_object.discription,tb_object.price,
+  tb_object.contactName,tb_object.contactNum,tb_object.contactWechat,tb_object.tag,count(tb_object.id) as aimer FROM tb_object
+        LEFT JOIN aime_object on tb_object.id = aime_object.object
+        WHERE tb_object.owner = #{ownerId}
     </select>
 
-    <select id="queryObjectsByTag" resultType="fr.toulouse.entity.Object">
-        SELECT id,owner,name,image,discription,price,contactName,contactNum,contactWechat,tag ,aimer
-        FROM tb_object
-        WHERE tag = #{tag}
+    <select id="queryObjectsByTag" resultType="fr.toulouse.entity.SHobject">
+        SELECT tb_object.id as id,tb_object.owner,tb_object.name,tb_object.image,tb_object.discription,tb_object.price,
+  tb_object.contactName,tb_object.contactNum,tb_object.contactWechat,tb_object.tag,count(tb_object.id) as aimer FROM tb_object
+        LEFT JOIN aime_object on tb_object.id = aime_object.object
+        WHERE tb_object.tag = #{tag}
     </select>
 
-    <insert id="insertObject" useGeneratedKeys="true" keyProperty="id" keyColumn="id" parameterType="fr.toulouse.entity.Object">
-        INSERT INTO tb_object(...) VALUES (#{},#{}...)
+    <insert id="insertObject" useGeneratedKeys="true" keyProperty="id" keyColumn="id" parameterType="fr.toulouse.entity.SHobject">
+        INSERT INTO tb_object(owner, name, image, discription, price, contactName, contactNum, contactWechat, tag)
+        VALUES (#{owner},#{name},#{image},#{discription},#{price},#{contactName},#{contactNum},#{contactWechat},#{tag})
     </insert>
     
-    <update id="updateObject" parameterType="fr.toulouse.entity.Object">
+    <update id="updateObject" parameterType="fr.toulouse.entity.SHobject">
         UPDATE tb_object
         <set>
-            <if test="name != null">name=#{name}</if>
+            <if test="owner != null">owner = #{owner}</if>
+            <if test="name != null">name = #{name}</if>
+            <if test="image != null">image = #{image}</if>
+            <if test="discription != null">discription = #{discription}</if>
+            <if test="price != null">price = #{price}</if>
+            <if test="contactName != null">contactName = #{contactName}</if>
+            <if test="contactNum != null">contactNum = #{contactNum}</if>
+            <if test="contactWechat != null">contactWechat = #{contactWechat}</if>
+            <if test="tag != null">tag = #{tag}</if>
         </set>
         WHERE id=#{id}
     </update>
@@ -43,6 +60,15 @@
     <delete id="deleteObject">
         DELETE FROM tb_object
         WHERE id = #{id}
+    </delete>
+
+    <insert id="likeObject" useGeneratedKeys="true" keyColumn="id" parameterType="map">
+        INSERT INTO aime_object(user, object, status) VALUES (#{userId},#{objectId},TRUE )
+    </insert>
+
+    <delete id="dislikeObject" parameterType="Integer">
+        DELETE FROM aime_object
+        WHERE user = #{userId} AND object = #{objectId}
     </delete>
 
 </mapper>
