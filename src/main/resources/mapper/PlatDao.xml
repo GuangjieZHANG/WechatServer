@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fr.toulouse.dao.PlatDao">
+    <select id="queryPlats" resultType="fr.toulouse.entity.Plat">
+         SELECT tb_plat.id as id, tb_plat.name, tb_plat.restaurant as restaurantId,tb_plat.image,
+         tb_plat.price,tb_plat.description, COUNT(tb_plat.id) as aimer,tb_plat.is_special FROM tb_plat
+         LEFT JOIN aime_plat ON tb_plat.id = aime_plat.plat
+         GROUP BY tb_plat.id
+         ORDER BY aimer
+         DESC
+    </select>
+
+    <select id="querySpecialPlat" resultType="fr.toulouse.entity.Plat">
+        SELECT tb_plat.id as id, tb_plat.name, tb_plat.restaurant as restaurantId,tb_plat.image,
+        tb_plat.price,tb_plat.description, COUNT(tb_plat.id) as aimer,tb_plat.is_special FROM tb_plat
+        LEFT JOIN aime_plat ON tb_plat.id = aime_plat.plat
+        WHERE is_special = TRUE
+        GROUP BY tb_plat.id
+    </select>
+
+    <!--maybe we should put it in tag services-->
+    <select id="queryPlatByTag" resultType="fr.toulouse.entity.Plat">
+        SELECT id,name,restaurant as restaurantId,image,price,description FROM tb_plat
+        WHERE is_special = TRUE
+    </select>
+
+    <select id="queryPlatByRestaurant" resultType="fr.toulouse.entity.Plat">
+        SELECT tb_plat.id as id, tb_plat.name, tb_plat.restaurant as restaurantId,tb_plat.image,
+        tb_plat.price,tb_plat.description, COUNT(tb_plat.id) as aimer,tb_plat.is_special FROM tb_plat
+        LEFT JOIN aime_plat ON tb_plat.id = aime_plat.plat
+        WHERE restaurant = #{restaurantId}
+        GROUP BY tb_plat.id
+    </select>
+
+    <insert id="insertPlat" useGeneratedKeys="true" keyProperty="id" keyColumn="id" parameterType="fr.toulouse.entity.Plat">
+        INSERT INTO tb_plat(name, restaurant, price,image, description, is_special) VALUES
+        (#{name},#{restaurantId},#{price},null,#{description},#{isSpecial});
+    </insert>
+
+    <update id="updatePlat" parameterType="fr.toulouse.entity.Plat">
+        UPDATE tb_plat
+        <set>
+        </set>
+        WHERE id=#{id}
+    </update>
+
+    <delete id="deletePlat">
+        DELETE FROM tb_plat
+        WHERE id = #{id}
+    </delete>
+
+    <insert id="likePlat" useGeneratedKeys="true" keyColumn="id" parameterType="map">
+        INSERT INTO aime_plat(user, plat) VALUES (#{userId},#{platId})
+    </insert>
+
+    <delete id="dislikePlat" parameterType="map">
+        DELETE FROM aime_plat
+        WHERE user = #{userId} AND plat = #{platId}
+    </delete>
+
+</mapper>

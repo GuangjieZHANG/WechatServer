@@ -20,32 +20,32 @@ public class ObjectController {
     @RequestMapping(value = "/getallobject", method = RequestMethod.GET)
     private Map<String,List<SHobject>> getAllObject(){
         Map<String,List<SHobject>> modelMap = new HashMap<String, List<SHobject>>();
-        List<SHobject> SHobjects = objectService.getAllObjects();
-        modelMap.put("allObjects", SHobjects);
+        List<SHobject> sHobjects = objectService.getAllObjects();
+        modelMap.put("allObjects", sHobjects);
         return modelMap;
     }
 
     @RequestMapping(value = "/getobjectbyid", method = RequestMethod.GET)
     private Map<String,SHobject> getObjectById(Integer id){
         Map<String,SHobject> modelMap = new HashMap<String, SHobject>();
-        SHobject SHobject = objectService.getObjectById(id);
-        modelMap.put("SHobject", SHobject);
+        SHobject sHobject = objectService.getObjectById(id);
+        modelMap.put("SHobject", sHobject);
         return modelMap;
     }
 
     @RequestMapping(value = "/getobjectsbyowner", method = RequestMethod.GET)
     private Map<String,List<SHobject>> getObjectsByOwner(Integer ownerId){
         Map<String,List<SHobject>> modelMap = new HashMap<String, List<SHobject>>();
-        List<SHobject> SHobjects = objectService.getObjectsByOwner(ownerId);
-        modelMap.put("objectsByOwner", SHobjects);
+        List<SHobject> sHobjects = objectService.getObjectsByOwner(ownerId);
+        modelMap.put("objectsByOwner", sHobjects);
         return modelMap;
     }
 
     @RequestMapping(value = "/getobjectbytag", method = RequestMethod.GET)
     private Map<String,List<SHobject>> getObjectsByTag(String tag){
         Map<String,List<SHobject>> modelMap = new HashMap<String, List<SHobject>>();
-        List<SHobject> SHobjects = objectService.getObjectsByTag(tag);
-        modelMap.put("objectsByTag", SHobjects);
+        List<SHobject> sHobjects = objectService.getObjectsByTag(tag);
+        modelMap.put("objectsByTag", sHobjects);
         return modelMap;
     }
 

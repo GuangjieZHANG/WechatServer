@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fr.toulouse.dao.PlatTagDao">
+
+    <select id="queryTagById" resultType="fr.toulouse.entity.PlatTag">
+        SELECT tag as platTag FROM tag_plat WHERE plat = #{platId}
+    </select>
+
+    <insert id="insertTag" useGeneratedKeys="true" keyColumn="id" parameterType="map">
+        INSERT INTO tag_plat(plat, tag) VALUES
+        (#{platId},#{tag});
+    </insert>
+
+    <update id="updateTag" parameterType="map">
+        UPDATE tb_plat
+        <set>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteTag">
+        DELETE FROM tag_plat
+        WHERE plat = #{platId} AND tag = #{tag}
+    </delete>
+
+    <delete id="deleteAllTags">
+        DELETE FROM tag_plat
+        WHERE plat = #{platId}
+    </delete>
+
+</mapper>
