@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fr.toulouse.dao.DiscussionDao">
+
+    <select id="queryDiscussion" resultType="fr.toulouse.entity.Discussion">
+        SELECT id,title, description, tag, owner
+        FROM tb_discussion
+    </select>
+
+    <select id="queryDiscussionById" resultType="fr.toulouse.entity.Discussion">
+        SELECT id,title, description, tag, owner
+        FROM tb_discussion WHERE id = #{discussionId}
+    </select>
+
+    <select id="queryDiscussionByTag" resultType="fr.toulouse.entity.Discussion">
+        SELECT id,title, description, tag, owner
+        FROM tb_discussion WHERE tag = #{tag}
+    </select>
+
+    <select id="queryDiscussionByOwner" resultType="fr.toulouse.entity.Discussion">
+        SELECT id,title, description, tag, owner
+        FROM tb_discussion WHERE owner = #{owner}
+    </select>
+
+    <insert id="insertDiscussion" useGeneratedKeys="true" keyProperty="id" keyColumn="id" parameterType="fr.toulouse.entity.Discussion">
+        INSERT INTO tb_discussion(title, description, tag, owner) VALUES (#{title},
+        #{description},#{tag} ,#{owner})
+    </insert>
+
+    <update id="updateDiscussion" parameterType="fr.toulouse.entity.Discussion">
+        UPDATE tb_discussion
+        <set>
+        </set>
+        WHERE id=#{id}
+    </update>
+
+    <delete id="deleteDiscussion">
+        DELETE FROM tb_discussion WHERE id = #{id}
+    </delete>
+
+</mapper>

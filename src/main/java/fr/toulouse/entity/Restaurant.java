@@ -7,7 +7,9 @@ public class Restaurant {
 
     private Integer id; // PK
     private String name;
-    private Image image;
+    private byte[] image; // 餐馆头像
+    private byte[] bgimage; // 餐馆背景图
+    private byte[] qrcode; // 餐馆二维码
     private String address;
     private String description;
     private String telephone;
@@ -29,12 +31,28 @@ public class Restaurant {
         this.name = name;
     }
 
-    public Image getImage() {
+    public byte[] getImage() {
         return image;
     }
 
-    public void setImage(Image image) {
+    public void setImage(byte[] image) {
         this.image = image;
+    }
+
+    public byte[] getBgimage() {
+        return bgimage;
+    }
+
+    public void setBgimage(byte[] bgimage) {
+        this.bgimage = bgimage;
+    }
+
+    public byte[] getQrcode() {
+        return qrcode;
+    }
+
+    public void setQrcode(byte[] qrcode) {
+        this.qrcode = qrcode;
     }
 
     public String getAddress() {

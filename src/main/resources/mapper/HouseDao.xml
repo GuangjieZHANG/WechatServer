@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fr.toulouse.dao.HouseDao">
+
+    <select id="queryHouses" resultType="fr.toulouse.entity.House">
+        SELECT id,owner,image1,image2,image3,title,description,surface,location,price,start,is_shared as isShared,
+        is_long as isLong, locationtag, traffictag, contactName,contactNum,contactWechat,orders
+        FROM tb_house
+        ORDER BY orders
+        DESC
+    </select>
+
+    <select id="queryHouseById" resultType="fr.toulouse.entity.House">
+        SELECT id,owner,image1,image2,image3,title,description,surface,location,price,start,is_shared as isShared,
+        is_long as isLong, locationtag, traffictag, contactName,contactNum,contactWechat,orders
+        FROM tb_house WHERE id = #{houseId}
+        ORDER BY orders
+        DESC
+    </select>
+
+    <select id="queryHouseByOwner" resultType="fr.toulouse.entity.House">
+        SELECT id,owner,image1,image2,image3,title,description,surface,location,price,start,is_shared as isShared,
+        is_long as isLong, locationtag, traffictag, contactName,contactNum,contactWechat,orders
+        FROM tb_house WHERE owner = #{ownerId}
+        ORDER BY orders
+        DESC
+    </select>
+
+    <insert id="insertHouse" useGeneratedKeys="true" keyProperty="id" keyColumn="id" parameterType="fr.toulouse.entity.House">
+        INSERT INTO tb_house(owner, image1, image2,image3,title,description,surface,location,price,start,
+        is_shared,is_long,locationtag,traffictag,contactName,contactNum,contactWechat,orders) VALUES (#{owner},#{image1},#{image2},
+        #{image3},#{title},#{description},#{surface},#{location},#{price},#{start},#{isShared} ,#{isLong},#{locationtag},#{traffictag},#{contactName},
+        #{contactNum},#{contactWechat},#{orders})
+    </insert>
+
+    <update id="updateHouse" parameterType="fr.toulouse.entity.House">
+        UPDATE tb_house
+        <set>
+        </set>
+        WHERE id=#{id}
+    </update>
+
+    <delete id="deleteHouse">
+        DELETE FROM tb_house
+        WHERE id = #{id}
+    </delete>
+
+</mapper>

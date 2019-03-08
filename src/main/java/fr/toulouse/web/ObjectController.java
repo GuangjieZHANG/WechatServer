@@ -17,7 +17,7 @@ public class ObjectController {
     @Autowired
     private ObjectService objectService;
 
-    @RequestMapping(value = "/getallobject", method = RequestMethod.GET)
+    @RequestMapping(value = "/getallobjects", method = RequestMethod.GET)
     private Map<String,List<SHobject>> getAllObject(){
         Map<String,List<SHobject>> modelMap = new HashMap<String, List<SHobject>>();
         List<SHobject> sHobjects = objectService.getAllObjects();

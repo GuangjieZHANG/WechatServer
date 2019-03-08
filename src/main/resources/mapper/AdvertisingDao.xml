@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fr.toulouse.dao.AdvertisingDao">
+
+    <select id="queryAdvertising" resultType="fr.toulouse.entity.Advertising">
+        SELECT id,image, is_active as isActive, tag, link
+        FROM tb_advertising
+    </select>
+
+    <select id="queryAdvertisingByTag" resultType="fr.toulouse.entity.Advertising">
+        SELECT id,image, is_active as isActive, tag, link
+        FROM tb_advertising WHERE tag = #{tag} AND is_active = TRUE
+    </select>
+
+    <insert id="insertAdvertising" useGeneratedKeys="true" keyProperty="id" keyColumn="id" parameterType="fr.toulouse.entity.Advertising">
+        INSERT INTO tb_advertising(image,is_active,tag,link) VALUES (#{image},
+        #{isActive},#{tag} ,#{link})
+    </insert>
+
+    <update id="updateAdvertising" parameterType="fr.toulouse.entity.Advertising">
+        UPDATE tb_advertising
+        <set>
+        </set>
+        WHERE id=#{id}
+    </update>
+
+    <delete id="deleteAdvertising">
+        DELETE FROM tb_advertising
+        WHERE id = #{id}
+    </delete>
+</mapper>
