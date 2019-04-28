@@ -1,6 +1,5 @@
 package fr.toulouse.web;
 
-import fr.toulouse.entity.Advertising;
 import fr.toulouse.entity.Discussion;
 import fr.toulouse.service.DiscussionService;
 import org.springframework.beans.factory.annotation.Autowired;
