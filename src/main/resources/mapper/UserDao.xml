@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fr.toulouse.dao.UserDao">
+
+    <select id="queryUserById" resultType="fr.toulouse.entity.User">
+         SELECT tb_user.id, tb_user.name, tb_user.openid FROM tb_user
+         WHERE id = #{id}
+    </select>
+
+    <select id="queryUserByOpenId" resultType="fr.toulouse.entity.User">
+         SELECT tb_user.id, tb_user.name, tb_user.openid FROM tb_user
+         WHERE openid = #{openid}
+    </select>
+
+    <update id="updatePlat" parameterType="fr.toulouse.entity.User">
+        UPDATE tb_user
+        <set> tb_user.name = #{name}</set>
+        <set> tb_user.openid = #{openid}</set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteUser">
+        DELETE FROM tb_user
+        WHERE id = #{id}
+    </delete>
+
+    <insert id="insertUser" useGeneratedKeys="true" keyColumn="id" parameterType="map">
+        INSERT INTO tb_user(name, openid) VALUES (#{name},#{openid})
+    </insert>
+
+</mapper>

@@ -8,7 +8,7 @@ public interface HouseService {
 
     List<House> getAllHouses();
 
-    List<House> getHouseById(Integer houseId);
+    House getHouseById(Integer houseId);
 
     List<House> getHouseByOwner(Integer ownerId);
 

@@ -17,7 +17,7 @@ public interface HouseDao {
      * @param houseId
      * @return
      */
-    List<House> queryHouseById(Integer houseId);
+    House queryHouseById(Integer houseId);
 
     /**
      *

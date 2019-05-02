@@ -19,8 +19,8 @@
         SELECT tb_object.id as id,tb_object.owner,tb_object.name,tb_object.image,tb_object.discription,tb_object.price,
   tb_object.contactName,tb_object.contactNum,tb_object.contactWechat,tb_object.tag,count(tb_object.id) as aimer FROM tb_object
         LEFT JOIN aime_object on tb_object.id = aime_object.object
-        GROUP BY tb_object.id
         WHERE tb_object.id = #{id}
+        GROUP BY tb_object.id
     </select>
 
     <select id="queryObjectsByOwner" resultType="fr.toulouse.entity.SHobject">

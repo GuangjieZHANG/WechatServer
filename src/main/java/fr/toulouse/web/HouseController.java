@@ -29,9 +29,9 @@ public class HouseController {
     }
 
     @RequestMapping(value = "/gethousebyid", method = RequestMethod.GET)
-    private Map<String,List<House>> getHouseById(Integer houseId){
-        Map<String,List<House>> modelMap = new HashMap<String, List<House>>();
-        List<House> houses = houseService.getHouseById(houseId);
+    private Map<String,House> getHouseById(Integer houseId){
+        Map<String,House> modelMap = new HashMap<String, House>();
+        House houses = houseService.getHouseById(houseId);
         modelMap.put("houseById", houses);
         return modelMap;
     }

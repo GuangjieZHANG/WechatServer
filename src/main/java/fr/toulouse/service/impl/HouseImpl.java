@@ -21,7 +21,7 @@ public class HouseImpl implements HouseService {
     }
 
     @Override
-    public List<House> getHouseById(Integer houseId) {
+    public House getHouseById(Integer houseId) {
         return houseDao.queryHouseById(houseId);
     }
 
