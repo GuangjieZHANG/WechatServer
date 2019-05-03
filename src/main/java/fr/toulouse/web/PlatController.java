@@ -20,25 +20,25 @@ public class PlatController {
     private PlatService platService;
 
     @RequestMapping(value = "/getallplats", method = RequestMethod.GET)
-    private Map<String,List<Plat>> getAllPlats(){
+    private Map<String,List<Plat>> getAllPlats(Integer userId){
         Map<String,List<Plat>> modelMap = new HashMap<String, List<Plat>>();
-        List<Plat> plats = platService.getAllPlats();
+        List<Plat> plats = platService.getAllPlats(userId);
         modelMap.put("allPlats", plats);
         return modelMap;
     }
 
     @RequestMapping(value = "/getspecialplats", method = RequestMethod.GET)
-    private Map<String,List<Plat>> getSpecialPlats(){
+    private Map<String,List<Plat>> getSpecialPlats(Integer userId){
         Map<String,List<Plat>> modelMap = new HashMap<String, List<Plat>>();
-        List<Plat> plats = platService.getSpecialPlats();
+        List<Plat> plats = platService.getSpecialPlats(userId);
         modelMap.put("specialPlats", plats);
         return modelMap;
     }
 
     @RequestMapping(value = "/getplatsbyrestaurant", method = RequestMethod.GET)
-    private Map<String,List<Plat>> getPlatsByRestaurant(Integer restaurantId){
+    private Map<String,List<Plat>> getPlatsByRestaurant(Integer restaurantId,Integer userId){
         Map<String,List<Plat>> modelMap = new HashMap<String, List<Plat>>();
-        List<Plat> plats = platService.getPlatByRestaurant(restaurantId);
+        List<Plat> plats = platService.getPlatByRestaurant(restaurantId,userId);
         modelMap.put("platsByRestaurant", plats);
         return modelMap;
     }

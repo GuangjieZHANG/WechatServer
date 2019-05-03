@@ -69,4 +69,12 @@ public interface PlatDao {
      * @return
      */
     int dislikePlat(@Param("userId") Integer userId, @Param("platId") Integer platId);
+
+    /**
+     * 判断某人是否对某菜点赞
+     * @param userId
+     * @param platId
+     * @return
+     */
+    int ifLikePlat(@Param("userId") Integer userId, @Param("platId") Integer platId);
 }

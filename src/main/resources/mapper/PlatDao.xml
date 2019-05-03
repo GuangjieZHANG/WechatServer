@@ -60,4 +60,8 @@
         WHERE user = #{userId} AND plat = #{platId}
     </delete>
 
+    <select id="ifLikePlat" resultType="Integer">
+        SELECT count(id) FROM aime_plat WHERE plat = #{platId} AND user = #{userId}
+    </select>
+
 </mapper>

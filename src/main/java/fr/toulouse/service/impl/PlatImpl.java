@@ -21,20 +21,30 @@ public class PlatImpl implements PlatService{
     private PlatTagDao platTagDao;
 
     @Override
-    public List<Plat> getAllPlats() {
+    public List<Plat> getAllPlats(Integer userId) {
 
         List<Plat> plats = platDao.queryPlats();
         for(int i=0; i< plats.size(); i++){
             List<PlatTag> tags = platTagDao.queryTagById(plats.get(i).getId());
+            if(platDao.ifLikePlat(userId,plats.get(i).getId())==0){
+                plats.get(i).setIlike(false);
+            }else{
+                plats.get(i).setIlike(true);
+            }
             plats.get(i).setTags(tags);
         }
         return plats;
     }
 
     @Override
-    public List<Plat> getSpecialPlats() {
+    public List<Plat> getSpecialPlats(Integer userId) {
         List<Plat> plats = platDao.querySpecialPlat();
         for(int i=0; i< plats.size(); i++){
+            if(platDao.ifLikePlat(userId,plats.get(i).getId())==0){
+                plats.get(i).setIlike(false);
+            }else{
+                plats.get(i).setIlike(true);
+            }
             List<PlatTag> tags = platTagDao.queryTagById(plats.get(i).getId());
             plats.get(i).setTags(tags);
         }
@@ -47,10 +57,16 @@ public class PlatImpl implements PlatService{
     }
 
     @Override
-    public List<Plat> getPlatByRestaurant(Integer restaurantId) {
+    public List<Plat> getPlatByRestaurant(Integer restaurantId,Integer userId) {
 
         List<Plat> plats = platDao.queryPlatByRestaurant(restaurantId);
         for(int i=0; i< plats.size(); i++){
+
+            if(platDao.ifLikePlat(userId,plats.get(i).getId())==0){
+                plats.get(i).setIlike(false);
+            }else{
+                plats.get(i).setIlike(true);
+            }
             List<PlatTag> tags = platTagDao.queryTagById(plats.get(i).getId());
             plats.get(i).setTags(tags);
         }

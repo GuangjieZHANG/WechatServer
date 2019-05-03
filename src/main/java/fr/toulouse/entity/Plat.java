@@ -13,6 +13,7 @@ public class Plat {
     private String description;
     private Integer aimer;
     private boolean isSpecial;
+    private boolean ilike;
     private List<PlatTag> tags;
 
     public Integer getId() {
@@ -77,6 +78,14 @@ public class Plat {
 
     public void setIsSpecial(boolean special) {
         isSpecial = special;
+    }
+
+    public boolean isIlike() {
+        return ilike;
+    }
+
+    public void setIlike(boolean ilike) {
+        this.ilike = ilike;
     }
 
     public List<PlatTag> getTags() {

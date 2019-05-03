@@ -10,13 +10,13 @@ public interface PlatService {
      *
      * @return
      */
-    List<Plat> getAllPlats();
+    List<Plat> getAllPlats(Integer userId);
 
     /**
      *
      * @return
      */
-    List<Plat> getSpecialPlats();
+    List<Plat> getSpecialPlats(Integer userId);
 
     /**
      *
@@ -30,7 +30,7 @@ public interface PlatService {
      * @param restaurantId
      * @return
      */
-    List<Plat> getPlatByRestaurant(Integer restaurantId);
+    List<Plat> getPlatByRestaurant(Integer restaurantId, Integer userId);
 
     /**
      *
