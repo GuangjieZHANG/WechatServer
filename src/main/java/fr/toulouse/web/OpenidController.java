@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/getid")
-public class test {
+public class OpenidController {
 	// get test
 	@RequestMapping(value = "/getallids", method = RequestMethod.GET)
 		public String getTest() throws IOException{
