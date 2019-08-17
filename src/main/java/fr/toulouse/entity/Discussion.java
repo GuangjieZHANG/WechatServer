@@ -9,6 +9,9 @@ public class Discussion {
     private String description;
     private String tag;
     private Integer owner;
+    private String contactName;
+    private String contactNum;
+    private String contactWechat;
 
     public Integer getId() {
         return id;
@@ -48,5 +51,29 @@ public class Discussion {
 
     public void setOwner(Integer owner) {
         this.owner = owner;
+    }
+
+    public String getContactName() {
+        return contactName;
+    }
+
+    public void setContactName(String contactName) {
+        this.contactName = contactName;
+    }
+
+    public String getContactNum() {
+        return contactNum;
+    }
+
+    public void setContactNum(String contactNum) {
+        this.contactNum = contactNum;
+    }
+
+    public String getContactWechat() {
+        return contactWechat;
+    }
+
+    public void setContactWechat(String contactWechat) {
+        this.contactWechat = contactWechat;
     }
 }

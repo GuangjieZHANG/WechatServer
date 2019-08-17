@@ -7,6 +7,7 @@ public class SHobject {
     private Integer id; // PK
     private Integer owner; // FK 发布者
     private String name;
+    private boolean ilike;
     private byte[] image;
     private String discription;
     private double price;
@@ -39,6 +40,14 @@ public class SHobject {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public boolean isIlike() {
+        return ilike;
+    }
+
+    public void setIlike(boolean ilike) {
+        this.ilike = ilike;
     }
 
     public byte[] getImage() {

@@ -72,4 +72,8 @@
         WHERE user = #{userId} AND object = #{objectId}
     </delete>
 
+    <select id="ifLikeObject" resultType="Integer">
+        SELECT count(id) FROM aime_object WHERE object = #{objectId} AND user = #{userId}
+    </select>
+
 </mapper>

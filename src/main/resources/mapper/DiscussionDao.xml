@@ -5,27 +5,27 @@
 <mapper namespace="fr.toulouse.dao.DiscussionDao">
 
     <select id="queryDiscussion" resultType="fr.toulouse.entity.Discussion">
-        SELECT id,title, description, tag, owner
+        SELECT id,title, description, tag, owner, contactName, contactNum, contactWechat
         FROM tb_discussion
     </select>
 
     <select id="queryDiscussionById" resultType="fr.toulouse.entity.Discussion">
-        SELECT id,title, description, tag, owner
+        SELECT id,title, description, tag, owner, contactName, contactNum, contactWechat
         FROM tb_discussion WHERE id = #{discussionId}
     </select>
 
     <select id="queryDiscussionByTag" resultType="fr.toulouse.entity.Discussion">
-        SELECT id,title, description, tag, owner
+        SELECT id,title, description, tag, owner, contactName, contactNum, contactWechat
         FROM tb_discussion WHERE tag = #{tag}
     </select>
 
     <select id="queryDiscussionByOwner" resultType="fr.toulouse.entity.Discussion">
-        SELECT id,title, description, tag, owner
+        SELECT id,title, description, tag, owner, contactName, contactNum, contactWechat
         FROM tb_discussion WHERE owner = #{owner}
     </select>
 
     <insert id="insertDiscussion" useGeneratedKeys="true" keyProperty="id" keyColumn="id" parameterType="fr.toulouse.entity.Discussion">
-        INSERT INTO tb_discussion(title, description, tag, owner) VALUES (#{title},
+        INSERT INTO tb_discussion(title, description, tag, owner, , contactName, contactNum, contactWechat) VALUES (#{title},
         #{description},#{tag} ,#{owner})
     </insert>
 

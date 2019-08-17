@@ -16,23 +16,55 @@ public class ObjectImpl implements ObjectService {
     private SHobjectDao sHobjectDao;
 
     @Override
-    public List<SHobject> getAllObjects() {
-        return sHobjectDao.queryObjects();
+    public List<SHobject> getAllObjects(Integer userId) {
+
+        List<SHobject> toreturn = sHobjectDao.queryObjects();
+        for(int i = 0; i < toreturn.size(); i++ ){
+            if(sHobjectDao.ifLikeObject(userId,toreturn.get(i).getId())==0){
+                toreturn.get(i).setIlike(false);
+            }else{
+                toreturn.get(i).setIlike(true);
+            }
+        }
+        return toreturn;
     }
 
     @Override
-    public SHobject getObjectById(Integer id) {
-        return sHobjectDao.queryObjectById(id);
+    public SHobject getObjectById(Integer id, Integer userId) {
+        SHobject sHobject = sHobjectDao.queryObjectById(id);
+        if(sHobjectDao.ifLikeObject(userId,id)==0){
+            sHobject.setIlike(false);
+        }else{
+            sHobject.setIlike(true);
+        }
+        return sHobject;
     }
 
     @Override
     public List<SHobject> getObjectsByOwner(Integer ownerId) {
-        return sHobjectDao.queryObjectsByOwner(ownerId);
+
+        List<SHobject> toreturn = sHobjectDao.queryObjectsByOwner(ownerId);
+        for(int i = 0; i < toreturn.size(); i++ ){
+            if(sHobjectDao.ifLikeObject(ownerId,toreturn.get(i).getId())==0){
+                toreturn.get(i).setIlike(false);
+            }else{
+                toreturn.get(i).setIlike(true);
+            }
+        }
+        return toreturn;
     }
 
     @Override
-    public List<SHobject> getObjectsByTag(String tag) {
-        return sHobjectDao.queryObjectsByTag(tag);
+    public List<SHobject> getObjectsByTag(String tag, Integer userId) {
+        List<SHobject> toreturn = sHobjectDao.queryObjectsByTag(tag);
+        for(int i = 0; i < toreturn.size(); i++ ){
+            if(sHobjectDao.ifLikeObject(userId,toreturn.get(i).getId())==0){
+                toreturn.get(i).setIlike(false);
+            }else{
+                toreturn.get(i).setIlike(true);
+            }
+        }
+        return toreturn;
     }
 
     @Transactional

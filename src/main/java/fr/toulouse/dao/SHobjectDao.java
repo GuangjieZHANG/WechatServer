@@ -70,4 +70,12 @@ public interface SHobjectDao {
      * @return
      */
     int dislikeObject(@Param("userId") Integer userId,@Param("objectId") Integer objectId);
+
+    /**
+     * if user like the object
+     * @param userId
+     * @param objectId
+     * @return
+     */
+    int ifLikeObject(@Param("userId") Integer userId,@Param("objectId") Integer objectId);
 }

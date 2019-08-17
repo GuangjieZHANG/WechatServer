@@ -9,14 +9,14 @@ public interface ObjectService {
      * 获取所有的二手物品信息
      * @return
      */
-    List<SHobject> getAllObjects();
+    List<SHobject> getAllObjects(Integer userId);
 
     /***
      * 通过ID获取物品详情
      * @param id
      * @return
      */
-    SHobject getObjectById(Integer id);
+    SHobject getObjectById(Integer id, Integer userId);
 
     /***
      * 通过发布者ID获得本人发布的所有物品
@@ -30,7 +30,7 @@ public interface ObjectService {
      * @param tag
      * @return
      */
-    List<SHobject> getObjectsByTag(String tag);
+    List<SHobject> getObjectsByTag(String tag,Integer userId);
 
     /***
      * 发布一件二手物品
