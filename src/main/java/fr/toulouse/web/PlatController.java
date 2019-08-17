@@ -43,6 +43,14 @@ public class PlatController {
         return modelMap;
     }
 
+    @RequestMapping(value = "/getplatsbyname", method = RequestMethod.GET)
+    private Map<String,List<Plat>> getPlatsByName(String name, Integer userId) {
+        Map<String,List<Plat>> modelMap = new HashMap<String, List<Plat>>();
+        List<Plat> plats = platService.getPlatByName(name,userId);
+        modelMap.put("platsByRestaurant", plats);
+        return modelMap;
+    }
+
     @RequestMapping(value = "/addplat", method = RequestMethod.POST)
     private Map<String,Object> addPlat(@RequestBody Plat plat){
         Map<String,Object> modelMap = new HashMap<String, Object>();

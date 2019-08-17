@@ -52,6 +52,21 @@ public class PlatImpl implements PlatService{
     }
 
     @Override
+    public List<Plat> getPlatByName(String name, Integer userId) {
+        List<Plat> plats = platDao.queryPlatByName(name);
+        for(int i=0; i< plats.size(); i++){
+            if(platDao.ifLikePlat(userId,plats.get(i).getId())==0){
+                plats.get(i).setIlike(false);
+            }else{
+                plats.get(i).setIlike(true);
+            }
+            List<PlatTag> tags = platTagDao.queryTagById(plats.get(i).getId());
+            plats.get(i).setTags(tags);
+        }
+        return plats;
+    }
+
+    @Override
     public List<Plat> getPlatByTag(String tag) {
         return null;
     }

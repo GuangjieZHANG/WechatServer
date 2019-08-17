@@ -26,6 +26,11 @@
         WHERE is_special = TRUE
     </select>
 
+    <select id="queryPlatByName" resultType="fr.toulouse.entity.Plat">
+        SELECT id,name,restaurant as restaurantId,image,price,description FROM tb_plat
+        WHERE name = #{name}
+    </select>
+
     <select id="queryPlatByRestaurant" resultType="fr.toulouse.entity.Plat">
         SELECT tb_plat.id as id, tb_plat.name, tb_plat.restaurant as restaurantId,tb_plat.image,
         tb_plat.price,tb_plat.description, COUNT(tb_plat.id) as aimer,tb_plat.is_special FROM tb_plat

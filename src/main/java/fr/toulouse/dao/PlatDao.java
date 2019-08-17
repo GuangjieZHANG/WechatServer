@@ -34,6 +34,13 @@ public interface PlatDao {
     List<Plat> queryPlatByRestaurant(Integer restaurantId);
 
     /**
+     * 根据菜名找到所有的菜
+     * @param name
+     * @return
+     */
+    List<Plat> queryPlatByName(String name);
+
+    /**
      * 插入一道菜
      * @param plat
      * @return

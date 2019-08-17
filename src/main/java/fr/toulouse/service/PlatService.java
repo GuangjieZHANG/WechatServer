@@ -27,6 +27,13 @@ public interface PlatService {
 
     /**
      *
+     * @param name
+     * @return
+     */
+    List<Plat> getPlatByName(String name, Integer userId);
+
+    /**
+     *
      * @param restaurantId
      * @return
      */
